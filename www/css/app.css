@@ -1,0 +1,265 @@
+@CHARSET "ISO-8859-1";
+
+.error {
+    color: red;
+}
+
+html, body {
+    font: 100%/1.4 Helvetica, Arial, Helvetica, sans-serif;
+    margin: auto;
+    background-color: black;
+    height: 100%;
+}
+
+
+#container {
+    margin: auto;
+    height: 100%;
+}
+
+.container {
+    margin: auto;
+    height: 100%;
+}
+body {
+     background-image: none !important;
+    background: none !important;  
+    background-color: black!important;
+     
+}
+#title {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+    color: white;
+    font-weight: bold;
+    padding-left: 30px;
+    background-image: url('../images/smallAA.png');
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+    background-position: 2px 2px;
+    height: 26px;
+    padding-top: 4px;
+    border-bottom: 1px solid #808080;
+}
+
+#heading
+{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+    color: white;
+    font-weight: normal;
+    font-size: 125%;
+    text-align: center;
+    width: 100%;
+    clear: both;
+}
+
+#panic {
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 180px;
+    height: 180px;
+    clear: both;
+}
+
+#panic input {
+    width: 180px;
+    height: 180px;
+}
+
+#panic input:hover {
+/*    background-image: url('../images/RescueMe.png'); */
+}
+
+
+#explain {
+    clear: both;
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: normal;
+    font-size: 60%;
+    color: white;
+    text-align: center;
+}
+
+#version {
+    clear: both;
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: normal;
+    font-size: 60%;
+    color: white;
+    text-align: right;
+ 
+}
+
+.text {
+    clear: both;
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: normal;
+    font-size: 80%;
+    color: white;
+    text-align: center;
+    padding-top: 5px;
+}
+
+.panicStep {
+    clear: both;
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: normal;
+    font-size: 100%;
+    color: white;
+    text-align: left;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+}
+
+.helpText {
+    clear: both;
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: normal;
+    font-size: 100%;
+    color: white;
+    text-align: left;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+}
+
+.helpText a
+{
+  color: white;
+}
+
+.panicStepResult {
+    font-weight: bold;
+}
+
+.panicStepErrorResult {
+    color: #FF8080;
+}
+
+
+#settings {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 160px;
+    clear: both;
+}
+
+#settings input {
+    width: 160px;
+    height: 40px;
+}
+
+#error {
+    clear: both;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    font-weight: normal;
+    font-size: 100%;
+    color: #FF8080;
+    text-align: center;
+}
+
+#label, .label {
+    clear: both;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-weight: normal;
+    font-size: 100%;
+    color: white;
+    text-align: center;
+}
+
+#field, .field {
+    clear: both;
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: normal;
+    text-align: center;
+}
+
+#field input, .field input {
+    font-weight: normal;
+    font-size: 100%;
+    color: black;
+    width: 200px;
+    height: 28px;
+    border: 2px solid #FFFFFF;
+    border-radius: 4px;
+    padding: 2px;
+}
+
+.checkfield {
+    clear: both;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: normal;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.checkfield input {
+    border: 1px solid #FFFFFF;
+    border-radius: 4px;
+}
+
+.button {
+    clear: both;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: normal;
+    text-align: center;
+    padding-top: 25px;
+}
+
+.button input {
+    background-color: #FFCB02;
+    font-weight: bold;
+    font-size: 100%;
+    color: black;
+    width: 200px;
+    height: 28px;
+    border: 2px solid #FFFFFF;
+    border-radius: 4px;
+}
+
+.button input:hover {
+    background-color: #A0A0A0;
+    cursor: hand;
+}
+
+.linksField {
+    clear: both;
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: normal;
+    text-align: center;
+    color: #FFFFFF;
+    padding-top: 15px;
+}
+
+.linksField a {
+    text-decoration: underline;
+    cursor: hand;
+}

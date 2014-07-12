@@ -1,0 +1,81 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AA Rescue</title>
+    <link href="favicon.ico" rel="icon" type="image/x-icon">
+    <link rel="stylesheet" href="css/app.css">
+    <script type="text/javascript" src="./js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="./js/jquery.soap.js"></script>
+    <script type="text/javascript" src="./js/msisdn.js"></script>
+    <script type="text/javascript" src="./js/panic.js"></script>
+</head>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>AA Rescue</title>
+</head>
+<body>
+    <div class="container" id="panicContainer">
+        <div id="title">
+            Rescue Service
+        </div>
+        <div class="panicStep">
+            Determining your location: <span id="locationResult" class="panicStepResult"></span>
+        </div>
+        <div class="panicStep" id="sendingPanicDiv" style="visibility:hidden;">
+            Contacting AA Rescue: <span id="panicResult" class="panicStepResult"></span>
+        </div>
+        <div class="panicStep" id="referenceResultDiv" style="visibility:hidden;">
+            Reference Number: <span id="referenceResult" class="panicStepResult"></span>
+        </div>
+        <div class="helpText" id="assistanceDiv" style="display: none;">
+            There is a problem connecting to the AA Rescue Service, please call <b><a href="tel:0861444143">0861 444 143</a></b> for assistance.
+        </div>
+        <div class="button" id="cancelPanicDiv">
+            <input type="button" value="Cancel Rescue" onclick="cancelPanic();" />
+        </div> 
+        <div class="button" id="okDiv" style="display: none;">
+            <input type="button" value="Ok" onclick="cancelPanic();" />
+        </div> 
+    </div>
+    <div class="container" id="cancelContainer" style="display: none">
+        <div id="title">
+            Rescue Service
+        </div>
+        <div class="panicStep">
+            Are you sure you want to cancel your rescue request <span id="referenceSpan" class="panicStepResult"></span>? 
+        </div>
+        <div class="button" id="YesNoPanicDiv">
+            <input type="button" value="Yes" onclick="performCancelPanic();" style="width: 100px" />
+            <input type="button" value="No" onclick="cancelPanicCancel();" style="width: 100px"  />
+        </div> 
+    </div>
+    <div class="container" id="cancelingContainer" style="display: none">
+        <div id="title">
+            Rescue Service
+        </div>
+        <div class="panicStep" id="sendingCancelDiv">
+            Contacting AA Rescue: <span id="panicCancelResult" class="panicStepResult"></span>
+        </div>
+        <div class="panicStep" id="cancelreferenceResultDiv" style="visibility:hidden;">
+            Reference Number: <span id="cancelreferenceResult" class="panicStepResult"></span>
+        </div>
+        <div class="text" id="cancelTextDiv" style="display: none;">
+            Your rescue request has been cancelled.
+        </div>
+        <div class="button" id="okCancelDiv" style="display: none;">
+            <input type="button" value="Ok" onclick="restart();" />
+        </div> 
+    </div>
+<script type="text/javascript">
+
+$(function() {
+  panic();
+});
+
+</script>
+</body>
+</html>

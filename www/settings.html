@@ -1,0 +1,62 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AA Rescue</title>
+    <link href="favicon.ico" rel="icon" type="image/x-icon">
+    <link rel="stylesheet" href="css/app.css">
+    <script type="text/javascript" src="./js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="./js/data.js"></script>
+</head>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>AA Rescue</title>
+</head>
+<body>
+    <div id="container">
+        <div id="title">
+            Rescue Service
+        </div>
+        <div id="heading">
+            Settings
+        </div>
+        <div id="text">
+            Click below if you would like contacts from your phonebook<br />
+	    to receive a notification in addition to your AA Rescue alert.
+        </div>
+        <!--div id="button">
+            <input type="button" value="start" onclick="mystart();" />
+        </div --> 
+    </div>
+<script type="text/javascript">
+
+
+function mystart() {
+  //alert('clear');
+  //localStorage.clear();
+
+  //alert('length: ' + localStorage.length);
+  //alert('1');
+  var currentMsisdn = getMsisdn();
+  //alert('2');
+  //alert(currentMsisdn);
+  if(currentMsisdn == "") {
+    window.location = "index.html";
+  }
+  else {
+    window.location = "panic.html";
+  }
+}
+
+$(function() {
+  mystart();
+  //window.setInterval(mystart, 100);
+});
+
+
+</script>
+</body>
+</html>

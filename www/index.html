@@ -1,0 +1,193 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>AA Rescue</title>
+     <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AA Rescue</title>
+    <link href="favicon.ico" rel="icon" type="image/x-icon">
+    <link rel="stylesheet" href="css/app.css">
+    <script type="text/javascript" src="./js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="./js/jquery.soap.js"></script>
+    <script type="text/javascript" src="./js/msisdn.js"></script>
+</head>
+<body>
+<form onsubmit="callSetMsisdn(); return false;">
+    <div id="container">
+        <div id="title">
+            Rescue Service
+        </div>
+        <div id="error" style="display: none;"></div>
+        <div class="label">
+	    Please enter the cellphone number you used to register on the AA Rescue Service website
+        </div>
+        <div class="field">
+            <input id="phoneNumber" type="tel" name="phoneNumber" />
+        </div>
+        <div class="checkfield">
+            <input type="checkbox" id="termsCheckBox" value="Yes">I have read and accept the terms and conditions</input>
+        </div>
+        <div class="button">
+            <input type="button" value="Next" onclick="next();" />
+        </div>
+        <div class="linksField">
+           <!-- <a onclick="openBrowser('https://www.aarescue.co.za/');">Register Online</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a onclick="openBrowser('https://www.aarescue.co.za/Info/Terms');">Terms and Conditions</a>-->
+           <a href="https://www.aarescue.co.za/" target="_blank" style="color:White">Register Online</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://www.aarescue.co.za/Info/Terms" target="_blank" style="color:White">Terms and Conditions</a>
+        </div>        
+    </div>
+</form>
+<script type="text/javascript">
+
+    $(function () {
+        $("#phoneNumber").focus();
+    });
+
+    function openBrowser(url) {
+        var args = new blackberry.invoke.BrowserArguments(url);
+        blackberry.invoke.invoke(blackberry.invoke.APP_BROWSER, args);
+    }
+
+    function next() {
+        if (!$('#termsCheckBox').is(':checked')) {
+            $('#error').html("Please indicated that you accept the terms and conditions.");
+            $('#error').show();
+            return;
+        }
+
+
+        if ($('#phoneNumber').val().length != 10) {
+            // $('#error').html("The phone number you've entered is invalid. Please try again.");
+            $('#error').html("Please wait while your mobile number is validated.");
+            $('#error').show();
+            return;
+        }
+
+        var msisdn = $('#phoneNumber').val();
+        isMsisdnRegistered(msisdn);
+
+
+
+    }
+    CallWebService = function (url, inputParams, callback) {
+        // alert(inputParams);
+        try {
+            var xhr = "";
+            if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xhr = new XMLHttpRequest();
+            }
+            else {// code for IE6, IE5
+                xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+
+            xhr.timeout = 600000;
+
+            // onreadystatechange function-HTTPClient
+            xhr.onreadystatechange = function () {
+                // alert(xhr.status);
+                if (xhr.readyState == 4) {
+                    //  alert('resposne ' + this.responseText);
+                    callback(this.responseText);
+
+                }
+            };
+
+            xhr.onerror = function (e) {
+                alert("The System is temporarily unavailable, please try again later.");
+            };
+
+            xhr.ontimeout = function (e) {
+                alert("Time out, please try again later.");
+            };
+
+            xhr.open('POST', url, true);
+            xhr.setRequestHeader("SOAPAction", "http://tempuri.org/IPanicService/IsARegisteredUser");
+            xhr.setRequestHeader("Content-Type", "text/xml");
+            xhr.send(inputParams);
+
+
+
+        }
+        catch (exp) {
+
+        }
+    }
+    var msisInputData = '';
+    function isMsisdnRegistered(userMsisdn) {
+
+        /* 
+        msisInputData = '<?xml version="1.0" encoding="utf-8"?>';
+        msisInputData = msisInputData + '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">';
+        msisInputData = msisInputData + '<soap:Body>';
+        msisInputData = msisInputData + '<IsARegisteredUser xmlns="http://tempuri.org/">'
+        msisInputData = msisInputData + '<msisdn>' + userMsisdn + '</msisdn>'
+        msisInputData = msisInputData + '</IsARegisteredUser>'
+        msisInputData = msisInputData + '</soap:Body>';
+        msisInputData = msisInputData + '</soap:Envelope>';
+        //  alert(userMsisdn);
+        CallWebService('http://gateway.aarescue.co.za/PanicService.svc', msisInputData, GetisregsiterCallback);*/
+
+        $.soap({
+            url: 'http://gateway.aarescue.co.za/PanicService.svc',
+            method: 'IsARegisteredUser',
+            appendMethodToURL: false,
+            SOAPAction: 'http://tempuri.org/IPanicService/IsARegisteredUser',
+            soap12: false,
+            params: {
+                msisdn: userMsisdn
+            },
+            namespaceQualifier: 'tem',
+            namespaceURL: 'http://tempuri.org/',
+            noPrefix: false,
+            request: function (SOAPRequest) {
+               
+            },
+            success: function (soapResponse) {
+                // do stuff with soapResponse
+                // if you want to have the response as JSON use soapResponse.toJSON();
+                // or soapResponse.toString() to get XML string
+                // or soapResponse.toXML() to get XML DOM
+                // alert(soapResponse);
+
+                var myxml = soapResponse.toXML();
+                //alert(myxml.documentElement.childNodes[0].childNodes[0].nodeName);
+                //alert(myxml.documentElement.childNodes[0].childNodes[0].childNodes[0].nodeName);
+
+                var isRegistered = myxml.documentElement.childNodes[0].childNodes[0].childNodes[0].childNodes[0].nodeValue;
+                // alert(isRegistered);
+                //alert(isRegistered == 'true');
+
+                if (isRegistered == 'true') {
+                    try {
+                        var ret = setMsisdn(userMsisdn);
+                        if (ret) {
+                            window.location = "panic.html";
+                        }
+                        else {
+                            $('#error').html(dataError);
+                            $('#error').show();
+                        }
+                    }
+                    catch (e) {
+                        //alert(e);
+                        $('#error').html("Unabled to validate membership. Please try again later.");
+                        $('#error').show();
+                    }
+                }
+                else {
+                    $('#error').html("The phone number you've entered is not linked to a AA membership.");
+                    $('#error').show();
+                }
+            },
+            error: function (soapResponse2) {
+                alert(soapResponse2);
+                $('#error').html("Unabled to validate membership. Please try again later.");
+                $('#error').show();
+            }
+        });
+    }
+
+</script>
+</body>
+</html>
